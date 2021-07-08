@@ -8,8 +8,7 @@ Grocery Bag is a way to store grocery items for marketing.
  </ul>
  
  ### Home Page
- ![image](https://user-images.githubusercontent.com/67169163/124908709-3eec5280-e007-11eb-8947-02574cd111c7.png)
- 
- 
+ ![image](https://user-images.githubusercontent.com/67169163/124911378-4e20cf80-e00a-11eb-8a23-1c60fe514fc1.png)
+
  Try GroceryBag Live
  http://grocerybag503.pythonanywhere.com/home
