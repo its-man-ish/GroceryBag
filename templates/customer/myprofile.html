@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+my profile
+{% endblock %}
+{% load static %}
+
+{% block content %}
+<!--MODAL -->
+
+  
+  
+
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Update Project</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+            
+        
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+    
+
+
+
+<div class="container">
+    <br>
+    <br>
+    <br>
+    {% if update %}
+        <h2>Updated Successfuly</h2>
+    {% endif %}
+
+    <div class="card bg-dark p-3">
+        <div class="row bg-dark text-light p-3">
+            <div class="col-sm-5">
+              <div class="card">
+               {% if profile.avatar %}
+               <img src="{{ profile.avatar.url }}" alt="" class="img-responsive">
+               {% else %}
+               <img src="{% static 'images/avatar.jpg' %}" alt="" class="img-responsive">
+               {% endif %}
+             
+              </div>
+          
+            </div>
+            <div class="col-sm-7">
+
+                <table class="table text-light">
+                    <tbody>
+                        <tr>
+                            <td>Username</td>
+                            <td>{{profile.user}}</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{profile.first_name}} {{profile.last_name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>{{profile.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td>From</td>
+                            <td>{{profile.country}}</td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+
+            </div>
+            
+            <div class="button text-center">
+              <br>
+           
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Update Profile
+              </button>
+            </div>
+        </div>
+        
+    </div>
+
+</div>
+
+
+{% endblock %}

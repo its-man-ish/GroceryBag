@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}
+Add Item
+{% endblock %}
+{% block style %}
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<div class=" d-flex justify-content-center">
+    <div class="card p-3 bg-dark text-light " style="max-width: 500px;">
+   
+         
+            <h1 class="text-center">Update Item</h1>
+            <form action="" method="post" class="p-3 m-2">
+            {% csrf_token %}
+            {{form|crispy}}
+            <br>
+            <input type="submit" value="Update" class="btn btn-warning btn-sm">
+
+        </form>
+      
+              <a href="{% url 'home'  %}" class='text-warning btn btn-lg btn-outline-light'>back</a>
+    </div>
+    <br>
+    <br>
+</div>
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% load bootstrap %}
+
+{% block content %}
+
+
+
+<div class="container">
+  <br>
+  <br>
+  <br>
+    <h3 class="display-4 text-center"><i class="bi bi-bag-check-fill"> </i><b>My Grocery List</b></h3> 
+    <hr>
+    <div class="container">
+      <div class="row">
+        <div class="card col-sm-4 p-3 mb-3">
+          <a href="{% url 'add-item'  %}" class="btn btn-primary"><b><i class="bi bi-plus-square-fill"> </i>ADD ITEMS</b></a> 
+          <hr>
+          <form action="" method="GET">
+            {{filter.form|bootstrap}}
+            <br>
+            <button type="submit" class='btn btn-danger'>Filter</button>
+          </form>
+        </div>
+       
+        <div class="col-sm-8 col-md-8">
+          
+            {% for item in filter.qs %}
+      
+            {% if user.id  == item.customer.id %} 
+           
+             
+               <div class="p-3 mb-2 card">
+                <h1>{{item.item_name}}</h1>
+                <h3 class="text-muted">{{item.item_quantity}}</h3>
+                <h5>
+                  {% if item.item_status == 'BUY' %}
+                      <span class='text-info'>PENDING</span>     
+                  {% endif %}
+                  {% if item.item_status == 'BOUGHT' %}
+                      <span class='text-success'>BOUGHT</span>     
+                  {% endif %}
+                  {% if item.item_status == 'NOT-AVAILABLE' %}
+                      <span class='text-danger'>NOT-AVAILABLE</span>     
+                  {% endif %}
+        
+                </h5>
+                <p>{{item.created|date:'Y-m-d'}}</p>
+                <h5>
+                  <a href="{% url 'update-item' item.pk %}" class="btn btn-dark btn-sm">Edit</a>
+                  <a href="{% url 'delete-item' item.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                </h5>
+               </div>
+             
+          
+      
+            {% endif %}
+              
+          {% endfor %}
+        
+        </div>
+      </div>
+    </div>
+   
+
+    <br>
+  
+   
+</div>
+
+
+
+<br>
+
+<script>
+
+  var name = "{{ user.id }}";
+  document.getElementById('username').value=name;
+
+</script>
+
+{% endblock %}
